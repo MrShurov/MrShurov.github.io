@@ -5,71 +5,7 @@
 <title>MrShurov</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-    background-color: black;
-    padding: 1px;
-    text-align: center;
-    font-size: 14px;
-    color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-    float: left;
-  
-    width: 30%;
-    height: 300px; /* only for demonstration, should be removed */
-    background: #f1f1f1;
-    padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-article {
-    float: left;
-    padding: 20px;
-    width: 70%;
-    background-color: #f1f1f1;
-    height: 300px; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* Style the footer */
-footer {
-    background-color: grey;
-    padding: 1px;
-    text-align: center;
-    color: ;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-    nav, article {
-        width: 100%;
-        height: auto;
-    }
-}
-</style>
+<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -81,26 +17,22 @@ footer {
   <nav>
     <p>My Tasks</p>
     <ul>
+    	<li><a href="task1">Task 1</a></li>
+    	<li><a href="task2">Task 2</a></li>
     </ul>
   </nav>
   
   <article>
-    <h1>Egor Shurov</h1>
-    <ul>
-      <li><a href="https://vk.com/egorshurov">VK</a></li>
-      <li><a href="http://t.me/MrShurov">Telegram</a></li>
-      <li><a href="https://www.steamcommunity.com/id/shurov007/">Steam 1</a></li>
-      <li><a href="https://www.steamcommunity.com/profiles/76561198239971942">Steam 2</a></li>
-      <li><a>E-mail : shurov13@mail.ru</a></li>
-      <li><a >Tel: +375447456788</a></li>
-      <li>Discord : -Moral#3504</li>
-    </ul>
+    <h1>Here will be my works!</h1>
   </article>
 </section>
 
 <footer>
-    <p>FOOTER</a></p>
+	<p>Personal Information:</p>
+    <a href="https://vk.com/egorshurov">VK</a>
+    <a href="http://t.me/MrShurov">Telegram</a>
+    <a>E-mail : shurov13@mail.ru</a>
+    <a >Tel: +375447456788</a>
 </footer>
-
 </body>
 </html>
