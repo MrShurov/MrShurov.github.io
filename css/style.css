@@ -9,6 +9,7 @@
 body {
 	margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
+    background: #f1f1f1;
 }
 
 /* Style the header */
@@ -24,8 +25,6 @@ header {
 nav {
     float: left;
     width: 30%;
-    height: 300px; /* only for demonstration, should be removed */
-    background: #f1f1f1;
     padding: 20px;
 }
 
@@ -39,8 +38,6 @@ article {
     float: left;
     padding: 20px;
     width: 70%;
-    background-color: #f1f1f1;
-    height: 300px; /* only for demonstration, should be removed */
 }
 
 /* Clear floats after the columns */
@@ -50,7 +47,7 @@ section:after {
     clear: both;
 }
 
-/* Style the footer */
+/*/* Style the footer */
 footer {
     background-color: lightgrey;
     padding: 15px;
@@ -59,7 +56,7 @@ footer {
 
 footer a {
     padding: 10px;
-}
+}*/
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
