@@ -1,0 +1,40 @@
+body{
+    background:white;
+}
+
+#blocks{
+    display: flex;
+    flex-direction: row;
+}
+
+#blocks p {
+    width: 100px;
+    height: 150px;
+    background: #eeeff2;
+    font: Tahoma;
+    font-size: 40px;
+    text-align: left;
+    margin-left: 10px;
+    padding-left:10px;
+    border-left: 10px #D0D0FF dotted;     
+}
+
+#blocks p:hover{
+  background-color:yellow;
+}
+
+.firstStyle:hover {
+  color: goldenrod;
+}
+.secondStyle:hover {
+  color: goldenrod;
+}
+#F:hover{
+  color:goldenrod;
+}
+
+#F {
+position:fixed;
+bottom:1px;
+right:5px;  
+}

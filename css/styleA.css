@@ -1,0 +1,30 @@
+body{
+    background:white;
+}
+
+#blocks {
+    display: flex;
+    flex-direction: column;
+}
+
+#blocks p{
+    width: 100px;
+    height: 100px;  
+    font: Tahoma;
+    font-size: 40px;
+    text-align: center;
+    margin: 5px auto; 
+}
+.secondStyle {
+background: #eeeff2;
+  border-top: 1px #687291 solid;
+}
+.firstStyle {
+  background: #dfe1e7; 
+ border-top: 1px #687291 solid;  
+}
+#F {
+    background: #687291;
+    border: 4px black solid;
+    line-height: 100px;
+}
