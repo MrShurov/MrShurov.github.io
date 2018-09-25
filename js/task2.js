@@ -1,6 +1,9 @@
 function alcohol(SD, BW, Wt, MR, DP) {
     var result;
     result = ((((0.806 * parseFloat(SD) * 1.2) / (parseFloat(BW) * parseFloat(Wt)) - parseFloat(MR) * parseFloat(DP))) * 10);
+    if(result < 0){
+    	result = 0.001;
+    }
     alcoholResult.value = result;
     if (result >= 0.001 && result <= 0.029) {
         $("#behavior").get(0).innerHTML = "Behavior: Average individual appears normal;";
