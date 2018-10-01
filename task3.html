@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="js/task1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/task3.js"></script>
 </head>
 <body>
 
@@ -25,12 +26,11 @@
     </nav>
 
     <article>
-        <h1>Task 1</h1>
-        <input type="text" id="firstSummand" value="2" size="1">
-        +
-        <input type="text" id="secondSummand" value="2" size="1">
-        <button type="button" OnClick="sum(firstSummand.value,secondSummand.value)"> =</button>
-        <input type="text" id="result" value="" size="1">
+        <h1>Balmer Peak</h1>
+        <p>m - the body weight in kilograms <input id="m" type="text" size="1"></p>
+        <p>r - the distribution coefficient of Widmark (0.70 for men, 0.60 for women) <select id="r"><option>0.7</option><option>0.6</option></select></p>
+        <button type="button" onclick="Balmer(m.value, r.value)">Submit</button>
+        <p id="result"></p>
     </article>
 </section>
 

@@ -18,9 +18,10 @@
     <nav>
         <p>My Tasks</p>
         <ul>
-            <li><a href="task1.html">Task 1</a></li>
+			<li><a href="task1.html">Task 1</a></li>
             <li><a href="task2.html">Task 2</a></li>
-            <li><a href="lab1.html">Flexible Box Layout</a>
+            <li><a href="lab1.html">Flexible Box Layout</a></li>
+            <li><a href="task3.html">Balmer Peak</a></li>
         </ul>
     </nav>
 
@@ -33,9 +34,9 @@
 DP is the drinking period in hours</p>
         <p>Enter values</p>
         <input type="text" id="SD" placeholder="SD" size="1">
-        <input type="text" id="BW" placeholder="BW" size="1">
+        <select id="BW"><option>0.58</option><option>0.49</option></select>
         <input type="text" id="Wt" placeholder="Wt" size="1">
-        <input type="text" id="MR" placeholder="MR" size="1">
+        <select id="MR"><option>0.015</option><option>0.017</option></select>
         <input type="text" id="DP" placeholder="DP" size="1">
         <button type="button" OnClick="alcohol(SD.value, BW.value, Wt.value, MR.value, DP.value)">Value</button>
         <input type="text" id="alcoholResult" value="" size="auto">
