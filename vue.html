@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Todo App</title>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <style>
+    .task-active {
+        cursor: pointer;
+    }
+    .task-active:hover {
+        color: #9e9e9e;
+        text-decoration: line-through;
+    }
+    .task-done {
+        cursor: pointer;
+    }
+    .task-done:hover {
+        color: rgba(0, 0, 0, .87);
+        text-decoration: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <v-app>
+                <v-toolbar color="blue" dark fixed app>
+                    <v-toolbar-title>Thanks Andrew!</v-toolbar-title>
+                </v-toolbar>
+                <v-content>
+                    <v-container fluid grid-list-xl>
+                        <v-layout row wrap>
+                            <v-flex>
+                                <v-card>
+                                    <v-card-title primary-title>
+                                        <div>
+                                            <h3 class="headline mb-0">Tasks: {{tasks.length}}</h3>
+                                        </div>
+                                    </v-card-title>
+                                    <v-divider></v-divider>
+                                    <v-card-title d-flex>
+                                        <v-flex xs6 sm6 md6 lg6 xl6>
+                                            <v-text-field v-model="newTask" label="New Task" :rules='taskRules' required @keydown.enter="addTask"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs6 sm6 md6 lg6 xl6>
+                                            <v-btn color="success" :disabled='!newTask' v-on:click='addTask'>Add Task</v-btn>
+                                        </v-flex>
+                                    </v-card-title>
+                                    <v-divider></v-divider>
+                                    <v-card-title>
+                                        <v-list subheader two-line>
+                                            <v-subheader>Active Tasks: {{activeTasks}}</v-subheader>
+                                            <v-list-tile v-for="(task, index) in active" :key='index'>
+                                                <v-list-tile-content @click='doneToggle(task)'>
+                                                    <v-list-tile-title class='task-active'>{{task.title}}
+                                                    </v-list-tile-title>
+                                                </v-list-tile-content>
+                                                <v-list-tile-action>
+                                                    <v-btn color="red" dark small fab @click='removeTask(task)'>
+                                                        <v-icon>delete_outline</v-icon>
+                                                    </v-btn>
+                                                </v-list-tile-action>
+                                            </v-list-tile>
+                                        </v-list>
+                                    </v-card-title>
+                                    <v-divider>
+                                    </v-divider>
+                                    <v-card-actions d-flex justify-center>
+                                        <v-switch label="Show/Hide completed" v-model="showDone"></v-switch>
+                                        <v-btn color="error" @click='removeAll'>Remove all</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                            <v-flex v-if='showDone'>
+                                <v-card>
+                                    <v-card-title primary-title>
+                                        <div>
+                                            <h3 class="headline mb-0">Completed: {{doneTasks}} <span v-if='this.doneTasksPercent!="NaN"'>({{doneTasksPercent}}%)</span></h3>
+                                        </div>
+                                    </v-card-title>
+                                    <v-divider></v-divider>
+                                    <v-card-title>
+                                        <v-list two-line>
+                                            <v-list-tile v-for="(task, index) in completed" :key='index'>
+                                                <v-list-tile-content @click='doneToggle(task)'>
+                                                    <v-list-tile-title class="grey--text"><s class='task-done'>{{task.title}}</s></v-list-tile-title>
+                                                </v-list-tile-content>
+                                                <v-list-tile-action>
+                                                    <v-btn color="red" dark small fab @click='removeTask(task)'>
+                                                        <v-icon>delete_outline</v-icon>
+                                                    </v-btn>
+                                                </v-list-tile-action>
+                                            </v-list-tile>
+                                        </v-list>
+                                    </v-card-title>
+                                </v-card>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-content>
+            </v-app>
+        </template>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <script>
+    new Vue({
+        el: '#app',
+        data: () => ({
+            newTask: null,
+            tasks: [{ title: "Pass a web technologies exam", done: false }, { title: "Create page with Vue", done: true }],
+            activeTasks: 0,
+            doneTasks: 0,
+            taskRules: [v => !!v || "Task should contain atleast 1 symbol"],
+            doneTasksPercent: 0,
+            showDone: true,
+            drawer: null
+        }),
+        computed: {
+            active: function() {
+                return this.tasks.filter(function(task) {
+                    return !task.done;
+                })
+            },
+            completed: function() {
+                return this.tasks.filter(function(task) {
+                    return task.done;
+                });
+            }
+        },
+        mounted: function() {
+            this.taskCounter()
+        },
+        updated: function() {
+            this.taskCounter()
+        },
+        methods: {
+            addTask: function() {
+                this.tasks.push({ title: this.newTask, done: false })
+                this.newTask = null
+            },
+            removeTask: function(task) {
+                this.tasks.splice(this.tasks.indexOf(task), 1);
+            },
+            taskCounter: function() {
+                let activeTasks = 0
+                let doneTasks = 0
+                let totalTasks = 0
+                let doneTasksPercent = 0
+                for (let i = 0; i < this.tasks.length; i++) {
+                    if (this.tasks[i].done != true) {
+                        activeTasks++
+                    } else {
+                        doneTasks++
+                    }
+                }
+                totalTasks = activeTasks + doneTasks
+                this.activeTasks = activeTasks
+                this.doneTasks = doneTasks
+                this.doneTasksPercent = ((doneTasks / totalTasks) * 100).toFixed(0)
+            },
+            removeAll: function() {
+                this.tasks = []
+            },
+            showDoneToggle: function() {
+                this.showDone = !this.showDone
+            },
+            doneToggle: function(task) {
+                task.done = !task.done
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
